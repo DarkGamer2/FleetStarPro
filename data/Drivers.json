@@ -1,0 +1,13 @@
+[
+    {
+        id: 1,
+        name: 'John Doe',
+        age: 30,
+        address: {
+            street: '123 Main St',
+            city: 'New York',
+            state: 'NY'
+        },
+        image:"https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+    }
+]

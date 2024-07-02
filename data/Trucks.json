@@ -1,0 +1,31 @@
+[{
+    id:1,
+    brand:"Peterbilt",
+    model:"389",
+    year:2014,
+    color:"red",
+    mileage:1000,
+    driver:"Johnson Smith",
+    image:"https://www.peterbilt.com/static-assets/images/truck/Peterbilt_389%20with%20Reflection-2008_1200x672_OH_v2.webp",
+},
+{
+    id:2,
+    brand:"Kenworth",
+    model:"W900",
+    year:2014,
+    color:"red",
+    mileage:1000,
+    driver:"Johnson Smith",
+    image:"https://foursite-pape-production.s3.amazonaws.com/papekenworth.com/b55cf5b7-d545-4438-95c4-d65b2b76e7f7.jpg",
+},
+{
+    id:3,
+    brand:"Western Star",
+    model:"4900",
+    year:2014,
+    color:"red",
+    mileage:1000,
+    driver:"Johnson Smith",
+    image:"https://img.carswp.com/western-start/4900/western-start_4900_2008_wallpapers_2_b.jpg",
+}
+]
