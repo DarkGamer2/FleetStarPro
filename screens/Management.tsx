@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, FlatList, Image} from 'react-native';
+import {StyleSheet, Text, View, FlatList, Image,ScrollView} from 'react-native';
 import React from 'react';
 import Trucks from '../data/Trucks.json';
 import Drivers from '../data/Drivers.json';
@@ -15,8 +15,8 @@ const Management = () => {
             <View style={styles.item}>
               <Image
                 source={{uri: item.image}}
-                style={{width: 200, height: 100}}
-                resizeMode="contain"
+                style={styles.image}
+                resizeMode='contain'
               />
               <Text style={styles.text}>
                 {item.brand} {item.model}
@@ -37,11 +37,12 @@ const Management = () => {
                 <Image
                   source={{uri: item.image}}
                   style={styles.image}
-                  resizeMode="contain"
-                />
+                  resizeMode='contain'
+                  />
                 <Text style={styles.text}>{item.name}</Text>
               </View>
             )}
+            numColumns={3}
           />
         </View>
       </View>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200, // Adjust height as needed
+    height: 150, // Adjust height as needed
     marginBottom: 10,
     borderRadius: 10,
   },
@@ -87,6 +88,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'Lato-Regular',
     fontSize: 18,
-   
   },
 });

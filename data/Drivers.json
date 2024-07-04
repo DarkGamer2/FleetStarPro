@@ -8,6 +8,27 @@
             city: 'New York',
             state: 'NY'
         },
-        image:"https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+        image:"https://i.pinimg.com/736x/a2/95/0f/a2950faa53be5e2872037f1027fdfbe3.jpg"
+    }
+    ,{
+        id: 2,
+        name: 'Romario Teemal',
+        age: 28,
+        address: {
+            street: '456 Elm St',
+            city: 'Los Angeles',
+            state: 'CA'
+        },
+        image:"https://toppng.com/uploads/preview/stock-person-png-stock-photo-man-11563049686zqeb9zmqjd.png"
+    },{
+        id: 3,
+        name: 'William Bordson',
+        age: 35,
+        address: {
+            street: '789 Oak St',
+            city: 'Chicago',
+            state: 'IL'
+        },
+        image:"https://as2.ftcdn.net/v2/jpg/02/28/13/87/1000_F_228138721_SRQgWHZLJ9RheziVg4sS1VX5KMPbdyOw.jpg"
     }
 ]

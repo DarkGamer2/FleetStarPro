@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from '../screens/Home';
 import Management from '../screens/Management';
@@ -13,7 +13,7 @@ const MyTabNav = () => {
     <Tab.Navigator
       initialRouteName="Home"
       activeColor='#e91e63'
-      barStyle={{ backgroundColor: 'white' }}
+      barStyle={{backgroundColor: 'white'}}
     >
       <Tab.Screen
         name="Home"
@@ -23,7 +23,7 @@ const MyTabNav = () => {
           tabBarLabelStyle: {
             fontFamily: 'Lato-SemiBold',
           },
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="home" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
@@ -34,7 +34,7 @@ const MyTabNav = () => {
         component={Catalog}
         options={{
           tabBarLabel: 'Vehicle Catalog',
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="bell" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
@@ -45,7 +45,7 @@ const MyTabNav = () => {
         component={Management}
         options={{
           tabBarLabel: 'Vehicle Management',
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
@@ -56,7 +56,7 @@ const MyTabNav = () => {
         component={Settings}
         options={{
           tabBarLabel: 'Settings',
-          tabBarIcon: ({ color }) => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="account" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen

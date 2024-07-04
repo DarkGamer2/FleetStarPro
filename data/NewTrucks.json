@@ -1,0 +1,41 @@
+[{
+    "brand":"Peterbilt",
+    "model":"589",
+    "year":"2022",
+    "color":"Red",
+    "image":"https://www.peterbilt.com/static-assets/images/truck/589/589-main-image.webp"
+},
+{
+    "brand":"Western Star",
+    "model":"49X",
+    "year":"2022",
+    "color":"Red",
+    "image":"https://www.velocitytruckcenters.com/s3/media/Western%20Star/49X/49x%20daycab.jpg"
+},
+{
+    "brand":"Kenworth",
+    "model":"W990",
+    "year":"2022",
+    "color":"Red",
+    "image":"https://ktc.blob.core.windows.net/media/Default/Trucks/67746/982460K5A2101_982460_YEAR_MAKE_MODEL_USED-01.jpg"
+},
+{
+    "brand":"MAN",
+    "model":"TGX Euro 6",
+    "year":"2018",
+    "color":"Blue",
+    "image":"https://cdn.truckscout24.com/data/listing/img/vga/ts/12/16386912-01.1719438645__.jpg"
+},
+{
+    "brand":"DAF",
+    "model":"XF Euro 6",
+    "year":"2021",
+    "color":"Red",
+    "image":"https://www.tircentrum.cz/wp-content/import/cars/images/4857/49.jpg"
+},{
+    "brand":"Mercedes-Benz",
+    "model":"Actros MP3",
+    "year":"2010",
+    "color":"Silver",
+    "image":"https://rev-mobilities.com/364-large_default/mercedes-actros-mp3.jpg"
+}]
