@@ -35,7 +35,7 @@ const MyTabNav = () => {
         options={{
           tabBarLabel: 'Vehicle Catalog',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="bell" color={color} size={26} />
+            <MaterialCommunityIcons name="shopping" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
         }}
@@ -46,7 +46,7 @@ const MyTabNav = () => {
         options={{
           tabBarLabel: 'Vehicle Management',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="truck" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
         }}
@@ -57,7 +57,7 @@ const MyTabNav = () => {
         options={{
           tabBarLabel: 'Settings',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
+            <MaterialCommunityIcons name="cog" color={color} size={26} />
           ),
           headerShown: false, // Hide the header for this screen
         }}

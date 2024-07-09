@@ -1,41 +1,81 @@
-[{
-    "brand":"Peterbilt",
-    "model":"589",
-    "year":"2022",
-    "color":"Red",
-    "image":"https://www.peterbilt.com/static-assets/images/truck/589/589-main-image.webp"
-},
-{
-    "brand":"Western Star",
-    "model":"49X",
-    "year":"2022",
-    "color":"Red",
-    "image":"https://www.velocitytruckcenters.com/s3/media/Western%20Star/49X/49x%20daycab.jpg"
-},
-{
-    "brand":"Kenworth",
-    "model":"W990",
-    "year":"2022",
-    "color":"Red",
-    "image":"https://ktc.blob.core.windows.net/media/Default/Trucks/67746/982460K5A2101_982460_YEAR_MAKE_MODEL_USED-01.jpg"
-},
-{
-    "brand":"MAN",
-    "model":"TGX Euro 6",
-    "year":"2018",
-    "color":"Blue",
-    "image":"https://cdn.truckscout24.com/data/listing/img/vga/ts/12/16386912-01.1719438645__.jpg"
-},
-{
-    "brand":"DAF",
-    "model":"XF Euro 6",
-    "year":"2021",
-    "color":"Red",
-    "image":"https://www.tircentrum.cz/wp-content/import/cars/images/4857/49.jpg"
-},{
-    "brand":"Mercedes-Benz",
-    "model":"Actros MP3",
-    "year":"2010",
-    "color":"Silver",
-    "image":"https://rev-mobilities.com/364-large_default/mercedes-actros-mp3.jpg"
-}]
+[
+    {
+      "brand": "Peterbilt",
+      "model": "589",
+      "year": "2022",
+      "color": "Red",
+      "image": "https://www.peterbilt.com/static-assets/images/truck/589/589-main-image.webp",
+      "images": [
+        "https://www.peterbilt.com/static-assets/images/truck/589/589-main-image.webp",
+        "https://cdn-ds.com/blogs-media/sites/669/2023/12/07165701/Pete-589-Sleeper-1280x720-1.jpg",
+        "https://www.peterbilt.com/static-assets/images/truck/Peterbilt_589_Group2-Exterior.webp"
+      ],
+      "requestlink":"https://www.peterbilt.com/find-a-dealer"
+    },
+    {
+      "brand": "Western Star",
+      "model": "49X",
+      "year": "2022",
+      "color": "Red",
+      "image": "https://www.velocitytruckcenters.com/s3/media/Western%20Star/49X/49x%20daycab.jpg",
+      "images": [
+        "https://www.velocitytruckcenters.com/s3/media/Western%20Star/49X/49x%20daycab.jpg",
+        "https://westernstar.blob.core.windows.net/assets/trucks/49x/carousel/WS49X_SB_Granite60MR-01.jpg",
+        "https://www.trucknews.com/wp-content/uploads/2020/11/westernstar-49x-600x450.jpg"
+      ],
+      "requestlink":"https://www.westernstartrucks.com/trucks/49x/quote/"
+    },
+    {
+      "brand": "Kenworth",
+      "model": "W990",
+      "year": "2022",
+      "color": "Red",
+      "image": "https://ktc.blob.core.windows.net/media/Default/Trucks/67746/982460K5A2101_982460_YEAR_MAKE_MODEL_USED-01.jpg",
+      "images": [
+        "https://ktc.blob.core.windows.net/media/Default/Trucks/67746/982460K5A2101_982460_YEAR_MAKE_MODEL_USED-01.jpg",
+        "https://www.kenworth.com/media/fc4ju4nm/w990-header.jpg",
+        "https://d2bv6n0vaysfxg.cloudfront.net/efs/wp/domains/www.kenworthsalesco.com/wp-content/uploads/2024/01/RJ343514-01.jpg"
+      ],
+      "requestlink":"https://www.kenworth.com/trucks/w990/"
+    },
+    {
+      "brand": "MAN",
+      "model": "TGX Euro 6",
+      "year": "2018",
+      "color": "Blue",
+      "image": "https://cdn.truckscout24.com/data/listing/img/vga/ts/12/16386912-01.1719438645__.jpg",
+      "images": [
+        "https://cdn.truckscout24.com/data/listing/img/vga/ts/12/16386912-01.1719438645__.jpg",
+        "https://i.ytimg.com/vi/RbahcYCHQCg/maxresdefault.jpg",
+        "https://i.pinimg.com/736x/82/cc/ca/82ccca091a952903e04547d10376840c.jpg"
+      ],
+      "requestlink":"https://www.man.eu/global/en/truck/all-models/the-man-tgx/overview/tgx-overview.html#"
+    },
+    {
+      "brand": "DAF",
+      "model": "XF Euro 6",
+      "year": "2021",
+      "color": "Red",
+      "image": "https://www.tircentrum.cz/wp-content/import/cars/images/4857/49.jpg",
+      "images": [
+        "https://www.tircentrum.cz/wp-content/import/cars/images/4857/49.jpg",
+        "https://live.staticflickr.com/5794/21062195760_b29cb0dee5_b.jpg",
+        "https://w0.peakpx.com/wallpaper/958/183/HD-wallpaper-daf-xf-2017-euro-6-new-trucks-orange-daf-road-trucking.jpg"
+      ],
+      "requestlink":"https://www.daf.co.uk/en-gb/dealer-locator-page"
+    },
+    {
+      "brand": "Mercedes-Benz",
+      "model": "Actros MP3",
+      "year": "2010",
+      "color": "Silver",
+      "image": "https://rev-mobilities.com/364-large_default/mercedes-actros-mp3.jpg",
+      "images": [
+        "https://rev-mobilities.com/364-large_default/mercedes-actros-mp3.jpg",
+        "https://live.staticflickr.com/5024/5680360637_8418a9f221_b.jpg",
+        "https://www.trucksnl.com/pictures/ad-7701469-3f165d34e519d70c/refrigerated_truck_mercedes_benz_actros_1841_l_mp3_mega_space_race_team_camper_flowers_star_star_theo_mulder_trs_iceland_2010_7701469.jpg?format=jpg&q=70&w=1110&h=832"
+      ],
+      "requestlink":"https://www.mercedes-benz-trucks.com/en_ID/models/long-distance-actros.html"
+    }
+  ]
+  

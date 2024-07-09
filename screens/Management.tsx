@@ -1,52 +1,71 @@
-import {StyleSheet, Text, View, FlatList, Image,ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Image,
+  ScrollView,
+  Pressable,
+} from 'react-native';
 import React from 'react';
 import Trucks from '../data/Trucks.json';
 import Drivers from '../data/Drivers.json';
-const Management = () => {
+import {SafeAreaView} from 'react-native-safe-area-context';
+const Management = ({navigation}) => {
   return (
-    <View>
-      <Text style={styles.appTitle}>Management</Text>
-      <Text style={styles.sectionHeader}>Your Trucks</Text>
+    <SafeAreaView>
       <View>
-        <FlatList
-          data={Trucks}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.item}>
-              <Image
-                source={{uri: item.image}}
-                style={styles.image}
-                resizeMode='contain'
-              />
-              <Text style={styles.text}>
-                {item.brand} {item.model}
-              </Text>
-            </View>
-          )}
-          numColumns={3}
-        />
-      </View>
-      <View>
-        <Text style={styles.sectionHeader}>Your Drivers</Text>
+        <Text style={styles.appTitle}>Management</Text>
+        <Text style={styles.sectionHeader}>Your Trucks</Text>
         <View>
           <FlatList
-            data={Drivers}
+            data={Trucks}
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={styles.item}>
-                <Image
-                  source={{uri: item.image}}
-                  style={styles.image}
-                  resizeMode='contain'
+                <Pressable
+                  onPress={() => navigation.navigate('Details', {truck: item})}>
+                  <Image
+                    source={{uri: item.image}}
+                    style={styles.image}
+                    resizeMode="contain"
                   />
-                <Text style={styles.text}>{item.name}</Text>
+                </Pressable>
+                <Text style={styles.text}>
+                  {item.brand} {item.model}
+                </Text>
               </View>
             )}
             numColumns={3}
           />
         </View>
+        <View>
+          <Text style={styles.sectionHeader}>Your Drivers</Text>
+          <View>
+            <FlatList
+              data={Drivers}
+              keyExtractor={item => item.id.toString()}
+              renderItem={({item}) => (
+                <View style={styles.item}>
+                  <Pressable
+                    onPress={() =>
+                      navigation.navigate('Driver Details', {driver: item})
+                    }>
+                    <Image
+                      source={{uri: item.image}}
+                      style={styles.image}
+                      resizeMode="contain"
+                    />
+                  </Pressable>
+                  <Text style={styles.text}>{item.name}</Text>
+                </View>
+              )}
+              numColumns={3}
+            />
+          </View>
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

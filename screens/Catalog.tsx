@@ -1,35 +1,38 @@
 import {StyleSheet, Text, View, FlatList, Image, Pressable} from 'react-native';
 import React from 'react';
 import NewTrucks from '../data/NewTrucks.json';
+import {SafeAreaView} from 'react-native-safe-area-context';
 const Catalog = ({navigation}) => {
   return (
-    <View>
-      <Text style={styles.appTitle}>Catalog</Text>
+    <SafeAreaView>
       <View>
-        <FlatList
-          data={NewTrucks}
-          renderItem={({item}) => (
-            <View style={styles.item}>
-              <Image
-                source={{uri: item.image}}
-                style={styles.image}
-                resizeMode="contain"
-              />
-              <View>
-                <Text style={styles.brandtext}>{item.brand}</Text>
-                <Text style={styles.modeltext}>{item.model}</Text>
+        <Text style={styles.appTitle}>Catalog</Text>
+        <View>
+          <FlatList
+            data={NewTrucks}
+            renderItem={({item}) => (
+              <View style={styles.item}>
+                <Image
+                  source={{uri: item.image}}
+                  style={styles.image}
+                  resizeMode="contain"
+                />
+                <View>
+                  <Text style={styles.brandtext}>{item.brand}</Text>
+                  <Text style={styles.modeltext}>{item.model}</Text>
+                </View>
+                <Pressable
+                  style={styles.viewDetailsButton}
+                  onPress={() => navigation.navigate('Details', {truck: item})}>
+                  <Text style={styles.viewDetailsText}>Details</Text>
+                </Pressable>
               </View>
-              <Pressable
-                style={styles.viewDetailsButton}
-                onPress={() => navigation.navigate('Details', {truck: item})}>
-                <Text style={styles.viewDetailsText}>Details</Text>
-              </Pressable>
-            </View>
-          )}
-          numColumns={3}
-        />
+            )}
+            numColumns={3}
+          />
+        </View>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
