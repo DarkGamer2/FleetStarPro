@@ -8,33 +8,41 @@ import {
   Alert,
   KeyboardAvoidingView,
 } from 'react-native';
-
-import React from 'react';
-import {app_auth} from '../FirebaseConfig';
-import {useState} from 'react';
+import React, {useState} from 'react';
 import {signInWithEmailAndPassword} from '@firebase/auth';
-const Login = ({navigation}) => {
+import {useTheme} from '../theme/ThemeContext';
+import Colors from '../theme/Colors';
+import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import {app_auth} from '../FirebaseConfig';
+
+type ThemeType = keyof typeof Colors;
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+};
+
+const Login = ({navigation}: Props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const auth = app_auth;
+  const {theme} = useTheme();
+
   const handleLogin = async () => {
     setLoading(true);
 
     try {
-      const response = await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(app_auth, email, password);
       navigation.navigate('FleetStar Pro');
-      console.log(response);
     } catch (error) {
-      console.log(error);
-      alert('Invalid credentials');
+      Alert.alert('Invalid credentials');
     } finally {
       setLoading(false);
     }
   };
+
+  const styles = styling(theme);
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <View style={{width: '80%', maxWidth: 400}}>
+    <View style={styles.topView}>
+      <View style={styles.bottomView}>
         <Text>Logo</Text>
         <Text style={styles.appTitle}>FleetStar Pro</Text>
         <View>
@@ -78,34 +86,42 @@ const Login = ({navigation}) => {
 
 export default Login;
 
-const styles = StyleSheet.create({
-  appTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  formLabel: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  formInput: {
-    borderWidth: 1,
-    borderColor: 'gray',
-    padding: 10,
-    marginBottom: 10,
-    width: '100%',
-  },
-  button: {
-    backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 5,
-    marginTop: 10,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-});
+const styling = (theme: ThemeType) =>
+  StyleSheet.create({
+    appTitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      fontFamily: 'Inter-Regular',
+      color: Colors[theme]?.textColor,
+      textAlign: 'center',
+    },
+    formLabel: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 5,
+      fontFamily: 'Lato-Regular',
+      color: Colors[theme]?.textColor,
+    },
+    formInput: {
+      borderWidth: 1,
+      borderColor: 'gray',
+      padding: 10,
+      marginBottom: 10,
+      width: '100%',
+      color: Colors[theme]?.textColor,
+    },
+    button: {
+      backgroundColor: 'red',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+    },
+    buttonText: {
+      color: Colors[theme]?.textColor,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    topView: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+    bottomView: {width: '80%', maxWidth: 400},
+  });

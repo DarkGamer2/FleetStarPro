@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from '../screens/Home';
 import Management from '../screens/Management';
@@ -12,9 +12,8 @@ const MyTabNav = () => {
   return (
     <Tab.Navigator
       initialRouteName="Home"
-      activeColor='#e91e63'
-      barStyle={{backgroundColor: 'white'}}
-    >
+      activeColor="#e91e63"
+      barStyle={{backgroundColor: 'white'}}>
       <Tab.Screen
         name="Home"
         component={Home}
