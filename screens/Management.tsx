@@ -1,6 +1,5 @@
 import {StyleSheet, Text, View, FlatList, Image, Pressable} from 'react-native';
 import React from 'react';
-import Trucks from '../data/Trucks.json';
 import Drivers from '../data/Drivers.json';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Colors from '../theme/Colors';
@@ -18,54 +17,31 @@ const Management = ({navigation}: Props) => {
   return (
     <SafeAreaView>
       <View>
-        <Text style={styles.appTitle}>Management</Text>
-        <Text style={styles.sectionHeader}>Your Trucks</Text>
+        <Text style={styles.appTitle}>Recruitment</Text>
+        <Text style={styles.sectionHeader}>Hire A Driver</Text>
         <View>
           <FlatList
-            data={Trucks}
+            data={Drivers}
             keyExtractor={item => item.id.toString()}
             renderItem={({item}) => (
               <View style={styles.item}>
+                <Image
+                  source={{uri: item.image}}
+                  style={styles.image}
+                  resizeMode="contain"
+                />
+                <Text style={styles.text}>{item.name}</Text>
                 <Pressable
-                  onPress={() => navigation.navigate('Details', {truck: item})}>
-                  <Image
-                    source={{uri: item.image}}
-                    style={styles.image}
-                    resizeMode="contain"
-                  />
+                  style={styles.viewDetailsButton}
+                  onPress={() =>
+                    navigation.navigate('Recruitment Details', {driver: item})
+                  }>
+                  <Text style={styles.viewDetailsText}>Details</Text>
                 </Pressable>
-                <Text style={styles.text}>
-                  {item.brand} {item.model}
-                </Text>
               </View>
             )}
             numColumns={3}
           />
-        </View>
-        <View>
-          <Text style={styles.sectionHeader}>Your Drivers</Text>
-          <View>
-            <FlatList
-              data={Drivers}
-              keyExtractor={item => item.id.toString()}
-              renderItem={({item}) => (
-                <View style={styles.item}>
-                  <Pressable
-                    onPress={() =>
-                      navigation.navigate('Driver Details', {driver: item})
-                    }>
-                    <Image
-                      source={{uri: item.image}}
-                      style={styles.image}
-                      resizeMode="contain"
-                    />
-                  </Pressable>
-                  <Text style={styles.text}>{item.name}</Text>
-                </View>
-              )}
-              numColumns={3}
-            />
-          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -114,5 +90,16 @@ const styling = (theme: ThemeType) =>
       fontSize: 18,
       color: Colors[theme]?.textColor,
       marginBottom: 10,
+    },
+    viewDetailsButton: {
+      backgroundColor: '#ff1100',
+      padding: 5,
+      borderRadius: 5,
+      marginBottom: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    viewDetailsText: {
+      color: 'white',
     },
   });

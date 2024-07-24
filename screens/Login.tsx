@@ -13,7 +13,7 @@ import {signInWithEmailAndPassword} from '@firebase/auth';
 import {useTheme} from '../theme/ThemeContext';
 import Colors from '../theme/Colors';
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
-import {app_auth} from '../FirebaseConfig';
+import {auth} from '../FirebaseConfig';
 
 type ThemeType = keyof typeof Colors;
 type Props = {
@@ -30,7 +30,7 @@ const Login = ({navigation}: Props) => {
     setLoading(true);
 
     try {
-      await signInWithEmailAndPassword(app_auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       navigation.navigate('FleetStar Pro');
     } catch (error) {
       Alert.alert('Invalid credentials');

@@ -32,15 +32,26 @@ const Catalog = ({navigation}: Props) => {
                   <Text style={styles.brandtext}>{item.brand}</Text>
                   <Text style={styles.modeltext}>{item.model}</Text>
                 </View>
-                <Pressable
-                  style={styles.viewDetailsButton}
-                  onPress={() => navigation.navigate('Details', {truck: item})}>
-                  <Text style={styles.viewDetailsText}>Details</Text>
-                </Pressable>
+                <View>
+                  <Pressable
+                    style={styles.viewDetailsButton}
+                    onPress={() =>
+                      navigation.navigate('Details', {truck: item})
+                    }>
+                    <Text style={styles.viewDetailsText}>Details</Text>
+                  </Pressable>
+                </View>
               </View>
             )}
             numColumns={3}
           />
+        </View>
+        <View style={styles.backButtonContainer}>
+          <Pressable
+            style={styles.backButton}
+            onPress={() => navigation.navigate('Manage Company')}>
+            <Text style={styles.backButtonText}>Go Back</Text>
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -106,5 +117,25 @@ const styling = (theme: ThemeType) =>
     },
     viewDetailsText: {
       color: 'white',
+    },
+    backButton: {
+      backgroundColor: '#ff1100',
+      padding: 10,
+      paddingLeft: 20,
+      paddingRight: 20,
+      borderRadius: 5,
+      marginBottom: 10,
+      width: '60%',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    backButtonText: {
+      color: Colors[theme]?.textColor,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      fontFamily: 'Lato-Regular',
+    },
+    backButtonContainer: {
+      alignContent: 'center',
     },
   });

@@ -43,9 +43,13 @@ const MyTabNav = () => {
         name="Management"
         component={Management}
         options={{
-          tabBarLabel: 'Vehicle Management',
+          tabBarLabel: 'Recruitment Agency',
           tabBarIcon: ({color}) => (
-            <MaterialCommunityIcons name="truck" color={color} size={26} />
+            <MaterialCommunityIcons
+              name="account-plus"
+              color={color}
+              size={26}
+            />
           ),
           headerShown: false, // Hide the header for this screen
         }}

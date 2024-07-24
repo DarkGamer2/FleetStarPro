@@ -1,6 +1,10 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
-import {initializeAuth, getReactNativePersistence} from 'firebase/auth';
+import {
+  getAuth,
+  initializeAuth,
+  getReactNativePersistence,
+} from 'firebase/auth';
+import {getDatabase} from 'firebase/database';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Your Firebase configuration
@@ -12,14 +16,18 @@ const firebaseConfig = {
   messagingSenderId: '287275294934',
   appId: '1:287275294934:web:83ac720e864e79ede56977',
   measurementId: 'G-CQPH2E4QW0',
+  databaseURL: 'https://fleetstarpro-5e5f5-default-rtdb.firebaseio.com/', // Add the database URL
 };
 
 // Initialize Firebase app
 const app = initializeApp(firebaseConfig);
 
 // Initialize Firebase Auth with AsyncStorage persistence
-const app_auth = initializeAuth(app, {
+const auth = initializeAuth(app, {
   persistence: getReactNativePersistence(AsyncStorage),
 });
 
-export {app, app_auth};
+// Initialize Firebase Database
+const database = getDatabase(app);
+
+export {app, auth, database};

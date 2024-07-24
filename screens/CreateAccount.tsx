@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useState} from 'react';
-import {app_auth} from '../FirebaseConfig';
+import {auth} from '../FirebaseConfig';
 import {createUserWithEmailAndPassword} from 'firebase/auth';
 import {useTheme} from '../theme/ThemeContext';
 import Colors from '../theme/Colors';
@@ -27,14 +27,14 @@ const CreateAccount = ({navigation}: Props) => {
   const [password, setPassword] = useState<string>('');
   const [companyName, setCompanyName] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const auth = app_auth;
+  const authenticator = auth;
 
   const createAccount = async () => {
     setLoading(true);
 
     try {
       const response = await createUserWithEmailAndPassword(
-        auth,
+        authenticator,
         email,
         password,
       );

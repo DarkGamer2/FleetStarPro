@@ -24,18 +24,18 @@ type Props = {
   route: RouteProp<ParamListBase>;
 };
 
-type TruckType = {
-  brand: string;
-  model: string;
+type DriverType = {
+  name: string;
+  age: string;
   year: number;
-  color: string;
+  address: Object;
+  state: string;
   image: string;
-  images: string[];
   requestlink?: string;
 };
-const Details = ({route, navigation}: Props) => {
-  const {truck} = route.params as {truck: TruckType};
-  const [displayedItem, setDisplayedItem] = useState(truck.image);
+const RecruitmentDetails = ({route, navigation}: Props) => {
+  const {driver} = route.params as {driver: DriverType};
+  const [displayedItem, setDisplayedItem] = useState(driver.image);
 
   const {theme} = useTheme();
   const renderImage = ({item}: {item: string}) => (
@@ -45,14 +45,14 @@ const Details = ({route, navigation}: Props) => {
   );
 
   const handleRequestQuote = () => {
-    if (truck.requestlink) {
-      console.log(`Navigating to: ${truck.requestlink}`);
-      if (truck.requestlink.startsWith('http')) {
-        Linking.openURL(truck.requestlink).catch(err =>
+    if (driver.requestlink) {
+      console.log(`Navigating to: ${driver.requestlink}`);
+      if (driver.requestlink.startsWith('http')) {
+        Linking.openURL(driver.requestlink).catch(err =>
           console.error("Couldn't load page", err),
         );
       } else {
-        navigation.navigate(truck.requestlink);
+        navigation.navigate(driver.requestlink);
       }
     } else {
       console.log('No request link available for this truck.');
@@ -74,28 +74,28 @@ const Details = ({route, navigation}: Props) => {
           resizeMode="contain"
         />
         <FlatList
-          data={truck.images}
+          data={driver.images}
           keyExtractor={(item, index) => index.toString()}
           renderItem={renderImage}
           horizontal
           contentContainerStyle={styles.gridContainer}
         />
         <View style={styles.row}>
-          <Text style={styles.title}>Brand: {truck.brand}</Text>
-          <Text style={styles.title}>Model: {truck.model}</Text>
+          <Text style={styles.title}>Name: {driver.name}</Text>
+          <Text style={styles.title}>Age: {driver.age}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={styles.detail}>Year: {truck.year}</Text>
-          <Text style={styles.detail}>Color: {truck.color}</Text>
+          <Text style={styles.detail}>Year: {driver.year}</Text>
+          <Text style={styles.detail}>State: {driver.address.state}</Text>
         </View>
         <Pressable style={styles.quoteButton} onPress={handleRequestQuote}>
-          <Text style={styles.buttonText}>Request Quote</Text>
+          <Text style={styles.buttonText}>Hire Driver</Text>
         </Pressable>
         {/* <Pressable
-          style={styles.purchaseButton}
-          onPress={handlePurchaseVehicle}>
-          <Text style={styles.purchaseButtonText}>Purchase Vehicle</Text>
-        </Pressable> */}
+            style={styles.purchaseButton}
+            onPress={handlePurchaseVehicle}>
+            <Text style={styles.purchaseButtonText}>Purchase Vehicle</Text>
+          </Pressable> */}
         <Pressable
           style={styles.backButton}
           onPress={() => navigation.navigate('FleetStar Pro')}>
@@ -106,7 +106,7 @@ const Details = ({route, navigation}: Props) => {
   );
 };
 
-export default Details;
+export default RecruitmentDetails;
 
 const styling = (theme: ThemeType) =>
   StyleSheet.create({

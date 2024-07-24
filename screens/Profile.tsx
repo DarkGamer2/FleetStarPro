@@ -12,11 +12,11 @@ import {useTheme} from '../theme/ThemeContext';
 import {Image} from 'react-native';
 import {NavigationProp} from '@react-navigation/native';
 import {useState, useEffect} from 'react';
-import {app_auth} from '../FirebaseConfig';
+import {auth} from '../FirebaseConfig';
 type ThemeType = keyof typeof Colors;
 import {User, onAuthStateChanged} from '@firebase/auth';
 const Profile = ({navigation}: {navigation: NavigationProp<any, any>}) => {
-  const auth = app_auth;
+  const authenticator = auth;
   const {theme} = useTheme();
   const styles = styling(theme as ThemeType);
   const [user, setUser] = useState<User | null>(null);
@@ -25,7 +25,7 @@ const Profile = ({navigation}: {navigation: NavigationProp<any, any>}) => {
     onAuthStateChanged(auth, user => {
       setUser(user);
     });
-  }, [auth]);
+  }, [authenticator]);
   return (
     <SafeAreaView style={styles.safeView}>
       <View style={styles.container}>

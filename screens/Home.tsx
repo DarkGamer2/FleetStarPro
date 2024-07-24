@@ -1,29 +1,76 @@
-import React, {useEffect} from 'react';
-import {StyleSheet, Text, View, Image} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  ScrollView,
+} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {onAuthStateChanged, User} from 'firebase/auth';
-import {app_auth} from '../FirebaseConfig';
-import {useState} from 'react';
+import {auth} from '../FirebaseConfig';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Colors from '../theme/Colors';
 import {useTheme} from '../theme/ThemeContext';
 import Trucks from '../data/Trucks.json';
 import Drivers from '../data/Drivers.json';
+import {
+  NavigationProp,
+  ParamListBase,
+  RouteProp,
+} from '@react-navigation/native';
+
 type ThemeType = keyof typeof Colors;
-const HomeScreen = () => {
+
+type Props = {
+  navigation: NavigationProp<ParamListBase>;
+  route: RouteProp<ParamListBase>;
+};
+
+const HomeScreen = ({navigation}: Props) => {
   const {theme} = useTheme();
-  const auth = app_auth;
+  const authenticator = auth;
   const [user, setUser] = useState<User | null>(null);
+  const [companyDetails, setCompanyDetails] = useState<any[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     onAuthStateChanged(auth, user => {
       setUser(user);
     });
-  }, [auth]);
+
+    fetch(
+      'https://fleetstarpro-5e5f5-default-rtdb.firebaseio.com/companies.json',
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    )
+      .then(response => response.json())
+      .then(data => {
+        if (data) {
+          const companyArray = Object.keys(data).map(key => ({
+            id: key,
+            ...data[key],
+          }));
+          setCompanyDetails(companyArray);
+        }
+        setIsLoaded(true);
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error);
+        setIsLoaded(true); // still set to true to stop loading indicator
+      });
+  }, [authenticator]);
 
   const styles = styling(theme as ThemeType);
+
   return (
     <SafeAreaView style={styles.safeView}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <View style={styles.header}>
           <Image
             source={{
@@ -39,35 +86,75 @@ const HomeScreen = () => {
         <View style={styles.statsContainer}>
           <View style={styles.statBox}>
             <MaterialCommunityIcons name="truck" size={40} color="#4F8EF7" />
-            <Text style={styles.statNumber}>
-              {Array.from(Trucks.keys()).length}
-            </Text>
+            <Text style={styles.statNumber}>{Object.keys(Trucks).length}</Text>
             <Text style={styles.statLabel}>Trucks</Text>
           </View>
           <View style={styles.statBox}>
             <MaterialCommunityIcons name="account" size={40} color="#4F8EF7" />
-            <Text style={styles.statNumber}>
-              {Array.from(Drivers.keys()).length}
-            </Text>
+            <Text style={styles.statNumber}>{Object.keys(Drivers).length}</Text>
             <Text style={styles.statLabel}>Drivers</Text>
           </View>
         </View>
         <View style={styles.companyInfo}>
-          <MaterialCommunityIcons
-            name="office-building"
-            size={50}
-            color="#4F8EF7"
-          />
-          <Text style={styles.companyName}>EuroCorp Logistics</Text>
-          <Text style={styles.missionStatement}>
-            Our mission is to provide the best transportation solutions.
-          </Text>
-          <MaterialCommunityIcons name="email" size={30} color="#4F8EF7" />
-          <Text style={styles.contactInfo}>
-            Contact us: eurocorp@logistics.com
-          </Text>
+          {isLoaded ? (
+            companyDetails.map(company => (
+              <View key={company.id} style={styles.companyDetails}>
+                <MaterialCommunityIcons
+                  name="office-building"
+                  size={50}
+                  color="#4F8EF7"
+                />
+                <Text style={styles.companyName}>{company.companyName}</Text>
+                <Text style={styles.companyAddress}>
+                  {company.companyAddress}
+                </Text>
+                <Text style={styles.missionStatement}>
+                  Our mission is to provide the best transportation solutions.
+                </Text>
+                <MaterialCommunityIcons
+                  name="email"
+                  size={30}
+                  color="#4F8EF7"
+                />
+                <Text style={styles.contactInfo}>
+                  Contact us: {company.companyEmail}
+                </Text>
+              </View>
+            ))
+          ) : (
+            <Text>Loading...</Text>
+          )}
         </View>
-      </View>
+        <View>
+          <Pressable
+            style={styles.addCompanyButton}
+            onPress={() => navigation.navigate('Add Company')}>
+            <Text style={styles.addCompanyButtonText}>Add Company</Text>
+          </Pressable>
+          <Pressable
+            style={styles.viewAllCompaniesButton}
+            onPress={() => navigation.navigate('All Companies')}>
+            <Text style={styles.viewAllCompaniesButtonText}>
+              View All Companies
+            </Text>
+          </Pressable>
+          <Pressable
+            style={styles.editCompanyButton}
+            onPress={() => navigation.navigate('Manage Company')}>
+            <Text style={styles.editCompanyButtonText}>
+              Manage{' '}
+              {companyDetails.map(company => {
+                return company.companyName;
+              })}
+            </Text>
+          </Pressable>
+          {/* <Pressable
+            style={styles.editCompanyButton}
+            onPress={() => navigation.navigate('Edit Company')}>
+            <Text style={styles.editCompanyButtonText}>Edit Company</Text>
+          </Pressable> */}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -131,9 +218,17 @@ const styling = (theme: ThemeType) =>
       backgroundColor: Colors[theme]?.backgroundColor,
       alignItems: 'center',
     },
+    companyDetails: {
+      marginBottom: 20,
+    },
     companyName: {
       fontSize: 24,
       fontWeight: 'bold',
+      color: Colors[theme]?.textColor,
+      marginBottom: 10,
+    },
+    companyAddress: {
+      fontSize: 18,
       color: Colors[theme]?.textColor,
       marginBottom: 10,
     },
@@ -149,5 +244,47 @@ const styling = (theme: ThemeType) =>
     },
     safeView: {
       flex: 1,
+    },
+    addCompanyButton: {
+      backgroundColor: '#4F8EF7',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    addCompanyButtonText: {
+      fontSize: 18,
+      color: 'white',
+      fontWeight: 'bold',
+    },
+    editCompanyButton: {
+      backgroundColor: '#FF0000',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    editCompanyButtonText: {
+      fontSize: 18,
+      color: Colors[theme]?.textColor,
+      fontWeight: 'bold',
+    },
+    viewAllCompaniesButton: {
+      backgroundColor: '#4F8EF7',
+      padding: 10,
+      borderRadius: 5,
+      marginTop: 10,
+      width: '100%',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    viewAllCompaniesButtonText: {
+      fontSize: 18,
+      color: Colors[theme]?.textColor,
+      fontWeight: 'bold',
     },
   });
